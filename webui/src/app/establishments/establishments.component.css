@@ -1,0 +1,39 @@
+  mat-cell-right{
+    display:flex !important;
+    justify-content:flex-end!important;
+  }
+  mat-header-cell{
+    font-size: 0.95rem;
+    font-weight: 500;
+    border-top-width: 0;
+    border-bottom-width: 1px;
+  }
+
+ 
+  .customWidth-5 {
+    flex: 0 0 5%;
+ }
+
+  .customWidth-10 {
+    flex: 0 0 10%;
+ }
+
+ .customWidth-15{
+  flex: 0 0 15%;
+}
+
+ .customWidth-20{
+  flex: 0 0 20%;
+}
+
+ .customWidth-30{
+  flex: 0 0 30%;
+}
+
+.customWidth-40{
+  flex: 0 0 40%;
+}
+
+.customWidth-50{
+  flex: 0 0 50%;
+}

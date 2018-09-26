@@ -1,0 +1,214 @@
+<div class="main-content">
+<form materialize class="col s12" [formGroup]="formGroup" #f="ngForm" (ngSubmit)="save()">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="card">
+                  <div class="card-header card-header-danger card-header-text">
+                        <div class="card-text"><h4 class="card-title">Estabelecimento</h4></div>
+                  </div>
+                  <div class="card-body">
+
+                           <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Nome Fantasia"  [disabled]='disabled' id="name" name="name" formControlName="name"  [ngModel]="establishment.name"   required  type="text">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                    <div class="col-md-6">
+                                        <mat-form-field>
+                                            <mat-select id="category" placeholder="Categoria Estabelecimento"  formControlName="category"  [ngModel]="establishment.category" required >
+                                                <mat-option  [value]="1">1</mat-option>
+                                                <mat-option  [value]="2">2</mat-option>
+                                                <mat-option  [value]="3">3</mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="CNPJ"  formControlName="cnpj" [ngModel]="establishment.cnpj" type="text" required>
+                                        <mat-hint class="error" *ngIf="formGroup.controls.cnpj.invalid && (formGroup.controls.cnpj.dirty || formGroup.controls.cnpj.touched)" align="end">Por favor informe um CNPJ válido. ex: (xx.xxx.xxx/xxxx-xx)</mat-hint>
+                                        </mat-form-field>
+                                    </div>
+                          </div>
+
+                          <div class="row">
+                                <div class="col-md-4">
+                                        <mat-form-field class="example-full-width">
+                                          <input matInput placeholder="Endereço" formControlName="address" [ngModel]="establishment.address" type="text" required>
+                                        </mat-form-field>
+                                </div>
+                                <div class="col-md-2">
+                                        <mat-form-field class="example-full-width">
+                                          <input matInput placeholder="Número" formControlName="number" [ngModel]="establishment.number" type="text" required>
+                                        </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Cidade"  formControlName="city" [ngModel]="establishment.city" type="text" required>
+                                    </mat-form-field>
+                                </div>
+                          </div>
+
+
+                           <div class="row">
+                                <div class="col-md-6">
+                                  <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="CEP" formControlName="cep" [ngModel]="establishment.cep" name="cep" type="text" required>
+                                  </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                  <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Telefone" formControlName="telephone" [ngModel]="establishment.telephone" name="telephone" type="text" required>
+                                  </mat-form-field>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Responsável" formControlName="responsible" [ngModel]="establishment.responsible" name="responsible" type="text" required>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="CPF"  formControlName="cpf" [ngModel]="establishment.cpf" name="cpf" type="text" required>
+                                    <mat-hint class="error" *ngIf="formGroup.controls.cpf.invalid && (formGroup.controls.cpf.dirty || formGroup.controls.cpf.touched)" align="end">Por favor informe um CNPJ válido. ex: (xxx.xxx.xxx-xx)</mat-hint>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+    
+                            <div class="row">
+                                <div class="col-md-12">
+                                  <label>Observação</label>
+                                  <mat-form-field class="example-full-width" >
+                                     <textarea matInput placeholder="Atividade."  formControlName="activity" [ngModel]="establishment.activity"></textarea>
+                                   </mat-form-field>
+                                </div>
+                           </div> <!---->
+
+                            <div class="row">
+                                    <div class="col-md-12">
+                                      <label>Observação</label>
+                                      <mat-form-field class="example-full-width" >
+                                         <textarea matInput placeholder="Observação." formControlName="observation" [ngModel]="establishment.observation" ></textarea>
+                                       </mat-form-field>
+                                    </div>
+                            </div> <!---->
+                          
+                          <div class="clearfix"></div>
+                      
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      
+      <div class="row">
+
+            <div class="col-md-12">
+                <div class="card">
+                    <form   class="col-md-12" [formGroup]="formGroupAdd" >
+                        <div class="card-header card-header-tabs card-header-danger">
+                            <h4 class="card-title">Anexos</h4>
+                            <p class="card-category">Preencha dados {{ title }} </p>
+                     </div>
+                        <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Titulo"  formControlName="title" [ngModel]="uploader.title"   required >
+                                </mat-form-field>
+                            </div>
+                            
+                      
+                           
+                            <div class="col-md-2">
+                                    <span class="btn btn-default btn-file ">
+                                            Anexar <input type="file"  (change)="onFileSelected($event)">
+                                        </span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                                <div class="col-md-8">
+                                  <label>Observação</label>
+                                  <mat-form-field class="example-full-width" >
+                                     <textarea matInput formControlName="description"  [ngModel]="uploader.description" ></textarea>
+                                   </mat-form-field>
+                                </div>
+                        </div> <!---->
+
+                        <div>
+                             <button mat-raised-button type="submit"  (click)="add()"  class="btn btn-success ">Adicionar</button>
+                        </div>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="profile">
+                                <table class="table">
+                                    <thead class="text-silver">
+                                        <th>Título</th>
+                                        <th>Anexo</th>
+                                        <th>Tamanho</th>
+                                        <th>Progresso</th>
+                                        <th>Ações</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of establishmentAttachments">
+                                            <td>
+                                                <strong>{{ item.title   }}</strong>
+                                                <!-- Image preview -->
+                                                <!--auto height-->
+                                                <!--<div ng-thumb="{ file: item.file, width: 100 }"></div>-->
+                                                <!--auto width-->
+                                                <div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
+                                                <!--fixed width and height -->
+                                                <div ng-thumb="{ file: item.file, width: 100, height: 100 }"></div>
+                                              </td>
+                                              
+
+                                              <!-- <td ng-show="uploader.isHTML5" nowrap><a  href="{{item.link}}" target="download">{{ item.fileName  }}</a> </td> -->
+                                              <td ng-show="uploader.isHTML5" nowrap><a (click)= "download(item.link)" target="download">{{ item.fileName  }}</a> </td>
+                                              <td ng-show="uploader.isHTML5" nowrap>{{ item.size /1024/1024 | number }} MB</td>
+                                              <td ng-show="uploader.isHTML5">
+                                                <div class="progress" style="margin-bottom: 0;">
+                                                  <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"> {{ item.progress }}%</div>
+                                                </div>
+                                              </td>
+                                            <td class="td-actions text-right">
+                                                <!-- <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
+                                                    <i class="material-icons">edit</i>
+                                                </button> -->
+                                                <button mat-raised-button type="button" (click)="removeAttachments()"  matTooltip="Remover" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
+                                                    <i class="material-icons">close</i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                        </div>
+<!-- 
+                        <app-upload></app-upload>> -->
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <mat-card>
+                <button mat-raised-button type="submit"   *ngIf="!disabled"    class="btn btn-success pull-right">Salvar</button>
+                <button mat-raised-button (click)="cancel()" class="btn btn-danger pull-right">Cancelar</button>
+            </mat-card>
+        </div>
+                         
+  </div>
+</form>
+</div>
+
+

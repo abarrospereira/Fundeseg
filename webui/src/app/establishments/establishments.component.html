@@ -1,0 +1,94 @@
+<div class="main-content">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-12"> 
+              <div class="card" >
+                  <div class="card-header card-header-danger">
+                    <h3 class="card-title">Estabelecimentos</h3>
+                    <p class="card-category">Listagem de estabelecimento</p>
+                  </div>
+                  <div style="padding: 20px;">
+                      <div class="row">
+                      
+                          <div class="col-sm-8">
+                              <mat-form-field>
+                                  <input matInput (keyup)="applyFilter($event.target.value)"  placeholder="Filter">
+                                </mat-form-field>
+                          </div>
+                          <div class="col-sm-2">
+                           
+                          </div>
+                          <div class="col-sm-2">
+                              <button class="btn btn-success btn-content btn-block"  (click)="newEstablishment()">Criar</button>
+                          </div>
+                      
+                      </div>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                        <mat-table [dataSource]="dataSource" matSort class="table">
+                            <!-- ID Column -->
+                            <ng-container matColumnDef="id"  >
+                            <mat-header-cell *matHeaderCellDef  [ngClass]="'customWidth-5'" mat-sort-header class="text-primary"> ID </mat-header-cell>
+                            <mat-cell *matCellDef="let row" [ngClass]="'customWidth-5'" > {{row.id}} </mat-cell>
+                            </ng-container>
+                        
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="name" >
+                            <mat-header-cell *matHeaderCellDef [ngClass]="'customWidth-25'" mat-sort-header class=" text-primary"> Nome Fantasia </mat-header-cell>
+                            <mat-cell *matCellDef="let row" [ngClass]="'customWidth-25'">  {{row.name}} </mat-cell>
+                            </ng-container>
+
+                            <!-- CNPJ Column -->
+                            <ng-container matColumnDef="cnpj" >
+                                <mat-header-cell *matHeaderCellDef [ngClass]="'customWidth-15'" mat-sort-header class=" text-primary"> CNPJ </mat-header-cell>
+                                <mat-cell *matCellDef="let row" [ngClass]="'customWidth-15'"> {{row.cnpj}} </mat-cell>
+                            </ng-container>
+
+                            <!-- Responsible Column -->
+                            <ng-container matColumnDef="responsible" >
+                                <mat-header-cell *matHeaderCellDef [ngClass]="'customWidth-20'" mat-sort-header class=" text-primary"> Responsável </mat-header-cell>
+                                <mat-cell *matCellDef="let row" [ngClass]="'customWidth-20'"> {{row.responsible}} </mat-cell>
+                            </ng-container>
+
+                            <!-- Responsible Column -->
+                            <ng-container matColumnDef="city">
+                                <mat-header-cell *matHeaderCellDef  [ngClass]="'customWidth-20'" mat-sort-header class=" text-primary"> Cidade </mat-header-cell>
+                                <mat-cell *matCellDef="let row"  [ngClass]="'customWidth-20'"> {{row.city}} </mat-cell>
+                            </ng-container>
+                                
+
+                            <ng-container matColumnDef="edit" >
+                                <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customWidth-25'" >  </mat-header-cell>
+                                <mat-cell class="mar-cell-right" *matCellDef="let row"  align="end" [ngClass]="'customWidth-25'" > 
+                                    <button type="button" rel="tooltip" class="btn btn-info btn-icon btn-sm" (click)="view(row.id)"  data-original-title="" title="">
+                                        <i class="fa fa-search"></i>
+                                    </button> 
+                                    <button type="button" rel="tooltip" class="btn btn-info btn-icon btn-sm" (click)="edit(row.id)"  data-original-title="" title="">
+                                        <i class="fa fa-edit"></i>
+                                    </button> 
+                                    <button type="button" rel="tooltip" class="btn btn-danger btn-icon btn-sm " (click)="delete(row.id)" data-original-title="" title="">
+                                            <i class="fa fa-times"></i>
+                                    </button>
+                                    <!-- <button type="button" rel="tooltip" class="btn btn-danger btn-icon btn-sm " (click)="viewProtocol()" data-original-title="" title="">
+                                        <i class="fa fa-times"></i>
+                                    </button> -->
+                                </mat-cell>
+                            </ng-container>
+                        
+                            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                            <mat-row *matRowDef="let row; columns: displayedColumns;">
+                            </mat-row>
+                        </mat-table>
+                        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                    </div>
+                </div>
+               
+              </div>
+          </div>
+
+      </div>
+  </div>
+  
+  
+</div>
